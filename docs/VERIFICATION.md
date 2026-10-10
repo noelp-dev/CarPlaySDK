@@ -24,7 +24,7 @@ The shared fixtures include missing/unknown fields, empty/loading lists, section
 
 The native compile harness substitutes **only** NativePHP's bridge protocol/response helpers and event sink. UIKit/CarPlay/MapKit and Android/AndroidX APIs are real. The harness therefore detects incorrect SDK method names/signatures and Kotlin constructor types, but cannot prove that NativePHP starts its PHP runtime or that an OEM accepts every template.
 
-The included GitHub Actions workflow mirrors the checks on separate PHP/JS, macOS Swift and Linux Kotlin jobs. That workflow is prepared but has not run in a hosted repository. Android dependencies used by the compile harness have pinned SHA-256 checksums; they are downloaded into ignored build output, not committed.
+The included GitHub Actions workflow mirrors the checks on separate PHP/JS, macOS Swift and Linux Kotlin jobs. That workflow runs on GitHub Actions in [noelp-dev/CarPlaySDK](https://github.com/noelp-dev/CarPlaySDK/actions) for every push and pull request. It repeats the source/compile checks only; it does not replace the signed app, simulator, DHU or vehicle tests. Android dependencies used by the compile harness have pinned SHA-256 checksums; they are downloaded into ignored build output, not committed.
 
 ## Reproduce
 

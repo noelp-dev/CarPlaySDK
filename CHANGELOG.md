@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 — review candidate
+## 0.1.0: review candidate
 
 - PHP value builders, Laravel facade/provider, testable transport and structured errors.
 - Swift CarPlay scenes, template rendering and serialized asynchronous operations.
@@ -11,4 +11,4 @@
 - JavaScript/TypeScript client and shared contract/native compilation checks.
 - Installation, platform matrix, API, architecture, research, verification and submission documentation.
 
-This candidate is unpublished. Device/simulator/DHU acceptance is required before a stable release.
+The source is on GitHub ([noelp-dev/CarPlaySDK](https://github.com/noelp-dev/CarPlaySDK), `dev-main`); it is not tagged, not on Packagist and not submitted to NativePHP. Device/simulator/DHU acceptance is required before a stable release.

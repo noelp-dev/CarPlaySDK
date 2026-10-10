@@ -2,7 +2,7 @@
 
 One PHP API for native Apple CarPlay templates and a Kotlin Android Auto `CarAppService`. This is a community plugin for NativePHP Mobile 4.x, with Swift and Kotlin implementations, a Laravel facade, a JavaScript/TypeScript client, and documentation for maintainers.
 
-**Status: 0.1.0 review candidate.** Both native implementations compile against real platform SDKs. Shared PHP/Swift/Kotlin contract tests pass. A signed NativePHP app, simulator/DHU sessions and physical vehicle tests remain release gates; see [verification](docs/VERIFICATION.md). This package has not been published or submitted.
+**Status: 0.1.0 review candidate.** Both native implementations compile against real platform SDKs. Shared PHP/Swift/Kotlin contract tests pass. A signed NativePHP app, simulator/DHU sessions and physical vehicle tests remain release gates; see [verification](docs/VERIFICATION.md). The source is published on GitHub at [noelp-dev/CarPlaySDK](https://github.com/noelp-dev/CarPlaySDK) (`dev-main`, no tagged release). It is not on Packagist and has not been submitted to the NativePHP marketplace.
 
 ## Features
 
@@ -17,18 +17,20 @@ One PHP API for native Apple CarPlay templates and a Kotlin Android Auto `CarApp
 
 CarPlay is an Apple platform. The Android implementation uses Android Auto rather than attempting to run CarPlay on Kotlin. Embedded turn-by-turn navigation, a media playback engine, communication/SiriKit and Android Automotive distribution are outside this release. The [platform matrix](docs/PLATFORMS.md) explains the exact mappings.
 
-## Local installation
+## Installation
 
-The Composer package is `noelp-dev/carplay-sdk`. Add this checkout as a Composer path repository in your **NativePHP application**:
+The Composer package is `noelp-dev/carplay-sdk`. Until it is registered on Packagist, add the GitHub repository as a VCS repository in your **NativePHP application**:
 
 ```json
 {
-  "repositories": [{"type": "path", "url": "../carplayapp"}]
+  "repositories": [{"type": "vcs", "url": "https://github.com/noelp-dev/CarPlaySDK"}]
 }
 ```
 
+For local development against a checkout, use `{"type": "path", "url": "../carplayapp"}` instead.
+
 ```sh
-composer require noelp-dev/carplay-sdk:@dev
+composer require noelp-dev/carplay-sdk:dev-main
 php artisan vendor:publish --tag=nativephp-plugins-provider
 php artisan native:plugin:register noelp-dev/carplay-sdk
 ```
