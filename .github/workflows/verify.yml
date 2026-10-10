@@ -48,7 +48,8 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
-      - run: sdkmanager 'platforms;android-36'
+        with:
+          packages: 'platform-tools platforms;android-36'
       - name: Install Kotlin compiler
         run: |
           curl --fail --location 'https://github.com/JetBrains/kotlin/releases/download/v2.1.21/kotlin-compiler-2.1.21.zip' -o "$RUNNER_TEMP/carplay-kotlin.zip"
