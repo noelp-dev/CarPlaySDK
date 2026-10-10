@@ -1,6 +1,6 @@
 # NativePHP submission dossier
 
-This document is ready to use as listing/review material. Publication and account submission have not happened. Resolve the outstanding [host/device release gates](VERIFICATION.md) before presenting this candidate as production-ready.
+This document is ready to use as listing/review material. The source is published at [github.com/noelp-dev/CarPlaySDK](https://github.com/noelp-dev/CarPlaySDK) on `main` without a tag. Packagist registration and NativePHP marketplace submission have not happened. Resolve the outstanding [host/device release gates](VERIFICATION.md) before presenting this candidate as production-ready.
 
 ## Suggested listing
 
@@ -10,9 +10,9 @@ This document is ready to use as listing/review material. Publication and accoun
 
 **Target repository:** [noelp-dev/CarPlaySDK](https://github.com/noelp-dev/CarPlaySDK)
 
-**Documentation URL after publication:** [README](https://github.com/noelp-dev/CarPlaySDK#readme)
+**Documentation URL:** [README](https://github.com/noelp-dev/CarPlaySDK#readme)
 
-**Support URL after publication:** [GitHub issues](https://github.com/noelp-dev/CarPlaySDK/issues)
+**Support URL:** [GitHub issues](https://github.com/noelp-dev/CarPlaySDK/issues)
 
 **License:** MIT
 
@@ -52,8 +52,8 @@ This release targets POI-style Android Auto apps and approved CarPlay parking, c
 
 ## Publication steps
 
-1. Publish `noelp-dev/carplay-sdk` to `noelp-dev/CarPlaySDK`. Composer metadata and listing use that owner; the existing PHP and Kotlin namespaces remain stable.
-2. Create the repository and run the included CI in that environment. Complete and record the signed app/simulator/DHU acceptance cases.
+1. Done: `noelp-dev/carplay-sdk` is published to [noelp-dev/CarPlaySDK](https://github.com/noelp-dev/CarPlaySDK). Composer metadata and listing use that owner; the existing PHP and Kotlin namespaces remain stable. It installs from `dev-main` through a VCS repository.
+2. The included CI runs in that repository (PHP/JS, Swift and Kotlin jobs; see [verification](VERIFICATION.md)). Still open: complete and record the signed app/simulator/DHU acceptance cases.
 3. Create a versioned review/stable tag according to the actual verification status, then register the public Composer package with Packagist if public distribution is intended.
 4. Sign in through NativePHP's [developer onboarding](https://nativephp.com/dashboard/developer/onboarding), reached from its [plugin page](https://nativephp.com/plugins). Use the listing copy and documentation URL above. Required dashboard fields must be confirmed after authentication.
 5. If seeking inclusion in the framework itself, agree scope with NativePHP maintainers first. A marketplace package and a core pull request are separate review paths; do not assume that an unrelated PR adds marketplace distribution.

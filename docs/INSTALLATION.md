@@ -4,7 +4,7 @@
 
 Use a NativePHP **Mobile 4.x** application. Desktop NativePHP does not host this bridge. The plugin manifest targets iOS 18+ and Android SDK 29+, matching NativePHP's current baseline. AndroidX Car App is pinned to stable 1.7.0. A host negotiating Car App API 6+ is necessary for tabs.
 
-The repository is a Composer plugin rather than a complete Laravel application. Add a path repository pointing to this directory, require `noelp-dev/carplay-sdk:@dev`, then register its provider through `native:plugin:register`. Composer's Laravel provider discovery supplies the PHP bindings; NativePHP's separate plugin registration compiles the native sources. [NativePHP registration guide](https://nativephp.com/docs/mobile/4/plugins/creating-plugins).
+The repository is a Composer plugin rather than a complete Laravel application. It is not on Packagist yet: add `{"type": "vcs", "url": "https://github.com/noelp-dev/CarPlaySDK"}` to the application's Composer `repositories` (or a path repository pointing to a local checkout), require `noelp-dev/carplay-sdk:dev-main` (`@dev` for a path repository), then register its provider through `native:plugin:register`. Composer's Laravel provider discovery supplies the PHP bindings; NativePHP's separate plugin registration compiles the native sources. [NativePHP registration guide](https://nativephp.com/docs/mobile/4/plugins/creating-plugins).
 
 ## iOS
 
