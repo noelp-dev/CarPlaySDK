@@ -1,0 +1,41 @@
+{
+  "name": "noelp-dev/carplay-sdk",
+  "description": "NativePHP Mobile bridge for Apple CarPlay and Kotlin Android Auto templates, lifecycle and durable interaction events.",
+  "type": "nativephp-plugin",
+  "license": "MIT",
+  "homepage": "https://github.com/noelp-dev/CarPlaySDK",
+  "support": {
+    "source": "https://github.com/noelp-dev/CarPlaySDK",
+    "issues": "https://github.com/noelp-dev/CarPlaySDK/issues"
+  },
+  "require": {
+    "php": "^8.3",
+    "illuminate/support": "^11.0 || ^12.0 || ^13.0",
+    "ext-dom": "*"
+  },
+  "suggest": {
+    "nativephp/mobile": "NativePHP Mobile 4.x host application"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fatsoenlijk\\CarPlay\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Fatsoenlijk\\CarPlay\\CarPlayServiceProvider"
+      ]
+    },
+    "nativephp": {
+      "manifest": "nativephp.json"
+    }
+  },
+  "scripts": {
+    "test": "@php tests/run.php && @php tests/transport.php",
+    "check": "php scripts/check.php"
+  },
+  "conflict": {
+    "nativephp/mobile": "<4.0 || >=5.0"
+  }
+}

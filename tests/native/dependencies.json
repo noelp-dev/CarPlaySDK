@@ -1,0 +1,62 @@
+[
+  {
+    "file": "app-1.7.0.aar",
+    "url": "https://dl.google.com/android/maven2/androidx/car/app/app/1.7.0/app-1.7.0.aar",
+    "sha256": "143b2e38df20cf64a07be311081017245b6bac65312bca90b93305a1efb8d6c5"
+  },
+  {
+    "file": "core-1.15.0.aar",
+    "url": "https://dl.google.com/android/maven2/androidx/core/core/1.15.0/core-1.15.0.aar",
+    "sha256": "432b85a1974076e14b487ece4a28c59a84f1b9efc3fc8be72cd7f05d32055e51"
+  },
+  {
+    "file": "lifecycle-runtime-android-2.8.7.aar",
+    "url": "https://dl.google.com/android/maven2/androidx/lifecycle/lifecycle-runtime-android/2.8.7/lifecycle-runtime-android-2.8.7.aar",
+    "sha256": "b8eb997dd434d70eb97cbd6d1395b6337c6771717c7acd59f11c0853f3860284"
+  },
+  {
+    "file": "lifecycle-common-jvm-2.8.7.jar",
+    "url": "https://dl.google.com/android/maven2/androidx/lifecycle/lifecycle-common-jvm/2.8.7/lifecycle-common-jvm-2.8.7.jar",
+    "sha256": "61c873a7327c946ec033c310bb98f3f92eeabcede0e1a5200ab8a1896483c7bf"
+  },
+  {
+    "file": "lifecycle-viewmodel-android-2.8.7.aar",
+    "url": "https://dl.google.com/android/maven2/androidx/lifecycle/lifecycle-viewmodel-android/2.8.7/lifecycle-viewmodel-android-2.8.7.aar",
+    "sha256": "e7e7043f66b077637563ff564a7fc6cee461d284a0f2485c050a2143abbd8920"
+  },
+  {
+    "file": "lifecycle-viewmodel-savedstate-2.8.7.aar",
+    "url": "https://dl.google.com/android/maven2/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.8.7/lifecycle-viewmodel-savedstate-2.8.7.aar",
+    "sha256": "646f2a42d2884b02308fb19837089e2669835fe21ca6a5b60666d5eb94d081dd"
+  },
+  {
+    "file": "fragment-1.8.5.aar",
+    "url": "https://dl.google.com/android/maven2/androidx/fragment/fragment/1.8.5/fragment-1.8.5.aar",
+    "sha256": "1dcb3a05d1b4815951eb492d80e883add888d5f24429d6423a8ad7fae14f48cd"
+  },
+  {
+    "file": "activity-1.9.3.aar",
+    "url": "https://dl.google.com/android/maven2/androidx/activity/activity/1.9.3/activity-1.9.3.aar",
+    "sha256": "7e45d2023dc17d715ffff3dc5792f798642c4ae11c948006b1752ab9edda5707"
+  },
+  {
+    "file": "savedstate-1.2.1.aar",
+    "url": "https://dl.google.com/android/maven2/androidx/savedstate/savedstate/1.2.1/savedstate-1.2.1.aar",
+    "sha256": "21a7d4bcf6bdb94ad7b9283801529300b4fbb8808ca4f191e0cdce6fd8e4705a"
+  },
+  {
+    "file": "annotation-jvm-1.9.1.jar",
+    "url": "https://dl.google.com/android/maven2/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.jar",
+    "sha256": "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0"
+  },
+  {
+    "file": "versionedparcelable-1.1.1.aar",
+    "url": "https://dl.google.com/android/maven2/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.aar",
+    "sha256": "57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4"
+  },
+  {
+    "file": "json-jvm.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/json/json/20250517/json-20250517.jar",
+    "sha256": "3ea61b2a06e31edf1c91134fe9106b0ebb16628be169f3db75bc7a2b06b45796"
+  }
+]

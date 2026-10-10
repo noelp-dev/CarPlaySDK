@@ -1,0 +1,57 @@
+name: Verify package
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  php-and-javascript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: dom
+          tools: composer:v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: composer validate --strict
+      - run: php scripts/check.php
+      - run: php tests/run.php
+      - run: php tests/transport.php
+      - run: npm test
+
+  swift:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 scripts/verify-native.py --platform ios
+
+  kotlin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - run: sdkmanager 'platforms;android-36'
+      - name: Install Kotlin compiler
+        run: |
+          curl --fail --location 'https://github.com/JetBrains/kotlin/releases/download/v2.1.21/kotlin-compiler-2.1.21.zip' -o "$RUNNER_TEMP/carplay-kotlin.zip"
+          unzip -q "$RUNNER_TEMP/carplay-kotlin.zip" -d "$RUNNER_TEMP/carplay-kotlin"
+          echo "KOTLINC=$RUNNER_TEMP/carplay-kotlin/kotlinc/bin/kotlinc" >> "$GITHUB_ENV"
+      - run: python3 scripts/verify-native.py --platform android

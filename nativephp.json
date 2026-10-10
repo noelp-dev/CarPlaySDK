@@ -1,0 +1,179 @@
+{
+  "namespace": "CarPlay",
+  "bridge_functions": [
+    {
+      "name": "CarPlay.Capabilities",
+      "ios": "CarPlayFunctions.Capabilities",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Capabilities",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.Status",
+      "ios": "CarPlayFunctions.Status",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Status",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.SetRoot",
+      "ios": "CarPlayFunctions.SetRoot",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.SetRoot",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.Push",
+      "ios": "CarPlayFunctions.Push",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Push",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.Replace",
+      "ios": "CarPlayFunctions.Replace",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Replace",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.Pop",
+      "ios": "CarPlayFunctions.Pop",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Pop",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.PopToRoot",
+      "ios": "CarPlayFunctions.PopToRoot",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.PopToRoot",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.Present",
+      "ios": "CarPlayFunctions.Present",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Present",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.Dismiss",
+      "ios": "CarPlayFunctions.Dismiss",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Dismiss",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.Clear",
+      "ios": "CarPlayFunctions.Clear",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Clear",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.Navigate",
+      "ios": "CarPlayFunctions.Navigate",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Navigate",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.Events",
+      "ios": "CarPlayFunctions.Events",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Events",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.Acknowledge",
+      "ios": "CarPlayFunctions.Acknowledge",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.Acknowledge",
+      "android_params": [
+        "context"
+      ]
+    },
+    {
+      "name": "CarPlay.BindEvents",
+      "ios": "CarPlayFunctions.BindEvents",
+      "android": "dev.fatsoenlijk.carplay.CarPlayFunctions.BindEvents",
+      "android_params": [
+        "activity"
+      ]
+    }
+  ],
+  "events": [
+    "Fatsoenlijk\\CarPlay\\Events\\CarEvent"
+  ],
+  "android": {
+    "min_version": 29,
+    "init_function": "dev.fatsoenlijk.carplay.initializeCarPlay",
+    "dependencies": {
+      "implementation": [
+        "androidx.car.app:app:1.7.0",
+        "androidx.car.app:app-projected:1.7.0"
+      ]
+    },
+    "services": [
+      {
+        "name": "dev.fatsoenlijk.carplay.NativeCarAppService",
+        "exported": true,
+        "intent_filters": [
+          {
+            "action": "androidx.car.app.CarAppService",
+            "category": "androidx.car.app.category.POI"
+          }
+        ],
+        "meta_data": [
+          {
+            "name": "androidx.car.app.minCarApiLevel",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "meta_data": [
+      {
+        "name": "com.google.android.gms.car.application",
+        "resource": "@xml/nativephp_car_app_desc"
+      }
+    ]
+  },
+  "ios": {
+    "min_version": "18.0",
+    "info_plist": {
+      "UIApplicationSceneManifest": {
+        "UIApplicationSupportsMultipleScenes": true,
+        "UISceneConfigurations": {
+          "CPTemplateApplicationSceneSessionRoleApplication": [
+            {
+              "UISceneClassName": "CPTemplateApplicationScene",
+              "UISceneConfigurationName": "NativePHP CarPlay",
+              "UISceneDelegateClassName": "NativeCarPlaySceneDelegate"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assets": {
+    "android": {
+      "android/res/xml/nativephp_car_app_desc.xml": "res/xml/nativephp_car_app_desc.xml"
+    }
+  },
+  "hooks": {
+    "post_compile": "carplay:configure"
+  }
+}

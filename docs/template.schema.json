@@ -1,0 +1,534 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NativePHP in-car template contract",
+  "description": "Structural schema. The three executable validators additionally enforce UTF-8 byte sizes, at most 100 rows across list sections, ID uniqueness by property and a 256 KiB serialized template bound. Platform/category support is negotiated separately.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/list"
+    },
+    {
+      "$ref": "#/$defs/grid"
+    },
+    {
+      "$ref": "#/$defs/information"
+    },
+    {
+      "$ref": "#/$defs/message"
+    },
+    {
+      "$ref": "#/$defs/search"
+    },
+    {
+      "$ref": "#/$defs/tabs"
+    },
+    {
+      "$ref": "#/$defs/poi"
+    },
+    {
+      "$ref": "#/$defs/alert"
+    },
+    {
+      "$ref": "#/$defs/nowPlaying"
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}(?![\\s\\S])",
+      "maxLength": 128
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "x-maxUtf8Bytes": 512,
+      "description": "Nonblank UTF-8 text; native validators enforce at most 512 bytes."
+    },
+    "optionalText": {
+      "type": "string",
+      "maxLength": 512,
+      "x-maxUtf8Bytes": 512
+    },
+    "icon": {
+      "enum": [
+        "list",
+        "grid",
+        "search",
+        "map",
+        "pin",
+        "parking",
+        "charging",
+        "food",
+        "music",
+        "play",
+        "pause",
+        "info",
+        "star",
+        "home"
+      ]
+    },
+    "item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "detail": {
+          "$ref": "#/$defs/optionalText"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        },
+        "action": {
+          "$ref": "#/$defs/id"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ],
+      "additionalProperties": false
+    },
+    "gridItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "detail": {
+          "$ref": "#/$defs/optionalText"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        },
+        "action": {
+          "$ref": "#/$defs/id"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "icon"
+      ],
+      "additionalProperties": false
+    },
+    "informationItem": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "detail": {
+          "$ref": "#/$defs/optionalText"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "style": {
+          "enum": [
+            "normal",
+            "cancel",
+            "destructive"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ],
+      "additionalProperties": false
+    },
+    "section": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "$ref": "#/$defs/optionalText"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/item"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "point": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "subtitle": {
+          "$ref": "#/$defs/optionalText"
+        },
+        "summary": {
+          "$ref": "#/$defs/optionalText"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "latitude",
+        "longitude"
+      ],
+      "additionalProperties": false
+    },
+    "list": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "type": {
+          "const": "list"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/section"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "loading": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type",
+        "sections"
+      ],
+      "additionalProperties": false
+    },
+    "grid": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "type": {
+          "const": "grid"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/gridItem"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "information": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "type": {
+          "const": "information"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/informationItem"
+          },
+          "minItems": 1,
+          "maxItems": 4
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "message": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "type": {
+          "const": "message"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        },
+        "message": {
+          "$ref": "#/$defs/text"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type",
+        "message"
+      ],
+      "additionalProperties": false
+    },
+    "search": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "type": {
+          "const": "search"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/item"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "hint": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "tabs": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "type": {
+          "const": "tabs"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        },
+        "tabs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/tabChild"
+          },
+          "minItems": 2,
+          "maxItems": 4
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type",
+        "tabs"
+      ],
+      "additionalProperties": false
+    },
+    "poi": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "type": {
+          "const": "poi"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/point"
+          },
+          "minItems": 1,
+          "maxItems": 6
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type",
+        "points"
+      ],
+      "additionalProperties": false
+    },
+    "alert": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "type": {
+          "const": "alert"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action"
+          },
+          "minItems": 1,
+          "maxItems": 2
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type",
+        "actions"
+      ],
+      "additionalProperties": false
+    },
+    "nowPlaying": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "type": {
+          "const": "nowPlaying"
+        },
+        "icon": {
+          "$ref": "#/$defs/icon"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "tabChild": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/list"
+        },
+        {
+          "$ref": "#/$defs/grid"
+        }
+      ]
+    }
+  }
+}

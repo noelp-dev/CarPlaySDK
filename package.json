@@ -1,0 +1,8 @@
+{
+  "name": "@noelp-dev/carplay-sdk",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {".": {"types": "./resources/js/carplay.d.ts", "import": "./resources/js/carplay.mjs"}},
+  "scripts": {"test": "node --test tests/javascript.test.mjs"}
+}
